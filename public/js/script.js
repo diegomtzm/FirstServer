@@ -1,21 +1,26 @@
 function init(){
-    fetch("/api/students")
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            throw new Error(res.statusText);
-        })
-        .then(resJSON => {
-            for(let i = 0; i < resJSON.length; i++) {
-                $("#studentsList").append(`<li>
-                                                ${resJSON[i].name}
-                                            </li>`);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+
+	fetch('/api/students')
+		.then( response => {
+
+			if ( response.ok ){
+				return response.json();
+			}
+
+			throw new Error ( response.statusText );
+		})
+		.then( responseJSON => {
+
+			for ( let i = 0; i < responseJSON.length; i ++ ){
+				$('#studentList').append(`<li>
+											${responseJSON[i].firstName}
+										</li>`);
+			}
+		})
+		.catch( err => {
+			console.log( err );
+		});
+
 }
 
 init();
